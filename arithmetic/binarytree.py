@@ -1,5 +1,9 @@
 #coding=utf-8
 
+
+"""完全二叉树结构及其四种遍历实现"""
+
+
 class Node(object):
 	"""节点类"""
 	def __init__(self,elem=-1,lchild=None,rchild=None):
