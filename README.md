@@ -1,2 +1,2 @@
 # python
-something about Python
+something about algorithm
