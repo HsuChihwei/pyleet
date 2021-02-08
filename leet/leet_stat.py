@@ -103,7 +103,7 @@ def generate_markdown_text(response_data, session):
     markdown_text += "### LeetCode自动统计--介绍\n"
     markdown_text += "可自动统计最近提交通过的题目, 并以Markdown的形式展示相关的数据。\n"
     markdown_text += "根据个人需求, 这里重点获取**提交次数**和**重刷次数**这两个指标, 目的是为了更好地辅助做题。\n"
-    markdown_text += "## 使用教程\n"
+    markdown_text += "### 使用教程\n"
     markdown_text += "1. Fork本仓库\n"
     markdown_text += "2. 配置GitHub Actions所需的参数\n"
     markdown_text += "    - 点击仓库下的Settings->Secrets->New repository secret, 分别添加以下secret\n"
