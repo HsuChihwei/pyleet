@@ -26,9 +26,9 @@ jobs:
       id: pip-cache
       with:
         path: venv
-        key: pip-1-${{ hashFiles('**/requirements.txt') }}
+        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
         restore-keys: |
-          pip-
+          ${{ runner.os }}-pip-
     
     - name: Install dependencies
       run: |
