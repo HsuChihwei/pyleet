@@ -1,21 +1,22 @@
+# !/usr/bin/env python
+# -*- coding: utf-8 -*-
+'''
+ Date: 2021-02-08 15:36:26
+ LastEditTime: 2021-02-08 17:26:04
+'''
 from random import randint
-from time import ctime, clock
-def timeUsed(func):
-    def timeUse(*arg):
-        timeTemp = clock()
-        ret = func(*arg)
-        timeTemp2 = clock()
-        print('%sActual used time:%0.3fs'%(func.__name__, timeTemp2-timeTemp))
-        return ret
-    return timeUse
+from utils.decorate import time_used
 
-@timeUsed
-def bubbleSort(alist):
-    for i in range(len(alist)-1,0,-1):
+
+@time_used
+def bubble_sort(alist):
+    for i in range(len(alist) - 1, 0, -1):
         for j in range(i):
-            if alist[j] > alist[j+1]:
-                alist[j], alist[j+1] = alist[j+1], alist[j]
+            if alist[j] > alist[j + 1]:
+                alist[j], alist[j + 1] = alist[j + 1], alist[j]
 
-alist = [randint(0,10000) for i in range(10000)]
-bubbleSort(alist)
-# print(alist)
+
+if __name__ == '__main__':
+    alist = [randint(0, 10000) for _ in range(10000)]
+    bubble_sort(alist)
+    print(alist)
