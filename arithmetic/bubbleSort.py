@@ -1,10 +1,12 @@
 # !/usr/bin/env python
 # -*- coding: utf-8 -*-
-'''
- Date: 2021-02-08 15:36:26
- LastEditTime: 2021-02-08 17:26:04
-'''
+"""
+Date: 2021-02-08 17:46:47
+LastEditTime: 2021-02-08 17:51:16
+"""
+
 from random import randint
+
 from utils.decorate import time_used
 
 
@@ -16,7 +18,7 @@ def bubble_sort(alist):
                 alist[j], alist[j + 1] = alist[j + 1], alist[j]
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     alist = [randint(0, 10000) for _ in range(10000)]
     bubble_sort(alist)
     print(alist)

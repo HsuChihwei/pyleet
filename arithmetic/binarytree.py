@@ -1,5 +1,9 @@
 # !/usr/bin/env python
 # -*- coding: utf-8 -*-
+"""
+Date: 2021-02-08 17:46:13
+LastEditTime: 2021-02-08 17:46:38
+"""
 
 """完全二叉树结构及其四种遍历实现"""
 
@@ -87,7 +91,7 @@ class Tree(object):
             return
         tree_queue = []
         tree_queue.append(self.root)
-        while(tree_queue):
+        while tree_queue:
             temp = tree_queue.pop(0)
             self.data_list.append(temp.elem)
             if temp.lchild is not None:
