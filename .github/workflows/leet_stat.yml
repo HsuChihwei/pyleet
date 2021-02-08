@@ -37,11 +37,11 @@ jobs:
       if: steps.pip-cache.outputs.cache-hit != 'true'
 
     - name: Get LeetCode Data
-      run: python leetcode.py ${{ secrets.LEETCODE_EMAIL }} ${{ secrets.LEETCODE_PASSWORD }}
+      run: python leet/leet_stat.py ${{ secrets.LEETCODE_EMAIL }} ${{ secrets.LEETCODE_PASSWORD }}
 
     - name: commit
       run: |
-        git config --global user.email admin@xuzhiwei.site
+        git config --global user.email home@xuzhiwei.site
         git config --global user.name xzw
         git add .
         git commit -m "update" -a
