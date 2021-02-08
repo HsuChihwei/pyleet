@@ -1,4 +1,4 @@
-name: Python Package using Conda
+name: Leet_Stat
 
 on: 
   push:
