@@ -1,6 +1,11 @@
-## 相关介绍
-这是一个简易的LeetCode自动统计程序, 可自动统计最近提交通过的题目, 并以Markdown的形式展示相关的数据。
-根据个人需求, 我只重点获取**提交次数**和**重刷次数**这两个指标, 目的是为了更好地辅助做题。
+## 项目介绍
+这里包含如下三件法宝：
+- Python版本的各种算法实现
+- Leetcode刷题最佳实践
+- LeetCode刷题自动统计程序
+### LeetCode自动统计--介绍
+可自动统计最近提交通过的题目, 并以Markdown的形式展示相关的数据。
+根据个人需求, 这里重点获取**提交次数**和**重刷次数**这两个指标, 目的是为了更好地辅助做题。
 ## 使用教程
 1. Fork本仓库
 2. 配置GitHub Actions所需的参数
@@ -10,9 +15,9 @@
     - 点击[tokens](https://github.com/settings/tokens)->Generate new token
         - Note:GITHUB_TOKEN
         - Select scopes:建议全部勾选
-    - 修改[action.yml](.github/workflows/action.yml)文件的第`42行`, 将`email`更改为你的GitHub邮箱地址
-    - 修改[action.yml](.github/workflows/action.yml)文件的第`43行`, 将`name`更改为你的GitHub用户名
-3. 默认配置为12小时更新一次，可根据需求修改[action.yml](.github/workflows/action.yml)文件的第`6行`
+    - 修改[leet_stat.yml](.github/workflows/leet_stat.yml)文件的第`44行`, 将`email`更改为你的GitHub邮箱地址
+    - 修改[leet_stat.yml](.github/workflows/leet_stat.yml)文件的第`45行`, 将`name`更改为你的GitHub用户名
+3. 默认配置为12小时更新一次，可根据需求修改[action.yml](.github/workflows/leet_stat.yml)文件的第`6行`
 ## 补充说明
 如有其他需求, 欢迎提交PR。
 
