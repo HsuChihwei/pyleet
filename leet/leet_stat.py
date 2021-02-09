@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 Date: 2021-02-08 20:45:34
-LastEditTime: 2021-02-09 14:53:59
+LastEditTime: 2021-02-09 14:59:26
 """
 import os
 import json
@@ -121,15 +121,15 @@ def generate_markdown_text(response_data, session):
     markdown_text += "### 使用教程\n"
     markdown_text += "1. Fork本仓库\n"
     markdown_text += "2. 配置GitHub Actions所需的参数\n"
-    markdown_text += "    - 点击仓库下的Settings->Secrets->New repository secret, 分别添加以下secret\n"
-    markdown_text += "        - Name:LEETCODE_EMAIL  Value:你的LeetCode账号\n"
-    markdown_text += "        - Name:LEETCODE_PASSWORD  Value:你的LeetCode密码\n"
+    markdown_text += "    - 点击仓库下的`Settings->Secrets->New repository secret`, 分别添加以下secret\n"
+    markdown_text += "        - Name:`LEETCODE_EMAIL`  Value:你的LeetCode账号\n"
+    markdown_text += "        - Name:`LEETCODE_PASSWORD`  Value:你的LeetCode密码\n"
     markdown_text += "    - 点击[tokens](https://github.com/settings/tokens)->Generate new token\n"
     markdown_text += "        - Note:GITHUB_TOKEN\n"
     markdown_text += "        - Select scopes:建议全部勾选\n"
-    markdown_text += "    - 修改[leet_stat.yml](.github/workflows/leet_stat.yml)文件的第`44行`, 将`email`更改为你的GitHub邮箱地址\n"
-    markdown_text += "    - 修改[leet_stat.yml](.github/workflows/leet_stat.yml)文件的第`45行`, 将`name`更改为你的GitHub用户名\n"
-    markdown_text += "3. 默认配置为12小时更新一次，可根据需求修改[action.yml](.github/workflows/leet_stat.yml)文件的第`6行`\n"
+    markdown_text += "    - 修改[leet_stat.yml](.github/workflows/leet_stat.yml)文件的`git config --global user.email`, 将`email`更改为你的GitHub邮箱地址\n"
+    markdown_text += "    - 修改[leet_stat.yml](.github/workflows/leet_stat.yml)文件的`git config --global user.name`, 将`name`更改为你的GitHub用户名\n"
+    markdown_text += "3. 默认配置为12小时更新一次，可根据需求修改[action.yml](.github/workflows/leet_stat.yml)文件的`on.schedule.cron`\n"
     markdown_text +=  "## 补充说明\n"
     markdown_text += "如有其他需求, 欢迎提交PR。\n"
     markdown_text += "\n\n"
