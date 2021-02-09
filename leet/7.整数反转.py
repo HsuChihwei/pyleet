@@ -1,3 +1,9 @@
+# !/usr/bin/env python
+# -*- coding: utf-8 -*-
+"""
+Date: 2021-02-09 19:44:29
+LastEditTime: 2021-02-09 19:47:17
+"""
 #
 # @lc app=leetcode.cn id=7 lang=python3
 #
@@ -42,5 +48,18 @@
 # @lc code=start
 class Solution:
     def reverse(self, x: int) -> int:
+        s = str(x)
+        if len(s) == 1:
+            return x
+        res = ''
+        if x < 0:
+            res = '-'
+            s = s[1:]
+        tmp = ''
+        for i in s:
+            tmp = i + tmp
+        if tmp[0] == '0':
+            tmp = tmp[1:]
+        return int(res + tmp)
 # @lc code=end
 
