@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 Date: 2021-02-08 20:45:34
-LastEditTime: 2021-02-09 20:34:42
+LastEditTime: 2021-02-09 20:41:54
 """
 import os
 import json
@@ -183,7 +183,7 @@ def generate_markdown_text(response_data, session):
             count = str(count)
 
         # 通过率
-        accept_rate = "{}%".format(round(accepted_ct * 100.0 / int(num_submitted), 4))
+        accept_rate = "{}%".format(round(accepted_ct * 100.0 / int(num_submitted), 2))
 
         # 最佳实践
         best_url = "[{}](https://leetcode-cn.com{})".format(best_url[0], best_url[1]) if best_url else '加油努力'
