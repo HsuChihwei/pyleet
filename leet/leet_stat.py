@@ -1,20 +1,23 @@
-#!/usr/bin/env python
-# -*- coding: UTF-8 -*-
-
-import sys
-import requests
-from requests.adapters import HTTPAdapter
-requests.packages.urllib3.disable_warnings()
+# !/usr/bin/env python
+# -*- coding: utf-8 -*-
+"""
+Date: 2021-02-08 20:45:34
+LastEditTime: 2021-02-09 14:53:59
+"""
 import os
 import json
 import time
 import datetime
+import sys
+import requests
+from requests.adapters import HTTPAdapter
+from fake_useragent import UserAgent
+requests.packages.urllib3.disable_warnings()
 
-
-
+ua = UserAgent().chrome
 
 # 登录
-def login(EMAIL, PASSWORD):
+def login(user_name, password):
     session = requests.Session()  # 建立会话
     session.mount('http://', HTTPAdapter(max_retries=6))  # 超时重试次数
     session.mount('https://', HTTPAdapter(max_retries=6))  # 超时重试次数
@@ -22,12 +25,17 @@ def login(EMAIL, PASSWORD):
 
     # 使用账号密码方式登录, 请确保账号密码正确
     login_data = {
-        'login': EMAIL,
-        'password': PASSWORD
+        'login': user_name,
+        'password': password
     }
 
     sign_in_url = 'https://leetcode-cn.com/accounts/login/'
-    headers = {'User-Agent': "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.122 Safari/537.36", 'Connection': 'keep-alive', 'Referer': sign_in_url, "origin": "https://leetcode-cn.com/"}
+    headers = {
+        'User-Agent': ua,
+         'Connection': 'keep-alive', 
+         'Referer': sign_in_url, 
+         "origin": "https://leetcode-cn.com/"
+    }
 
     # 发送登录请求
     session.post(sign_in_url, headers=headers, data=login_data, timeout=10, allow_redirects=False)
@@ -54,13 +62,17 @@ def get_submission_list(slug, session):
         "query": "query submissions($offset: Int!, $limit: Int!, $lastKey: String, $questionSlug: String!) {\n  submissionList(offset: $offset, limit: $limit, lastKey: $lastKey, questionSlug: $questionSlug) {\n    lastKey\n    hasNext\n    submissions {\n      id\n      statusDisplay\n      lang\n      runtime\n      timestamp\n      url\n      isPending\n      memory\n      __typename\n    }\n    __typename\n  }\n}\n"
     })
 
-    headers = {"content-type": "application/json", "origin": "https://leetcode-cn.com", "referer": "https://leetcode-cn.com/progress/", "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.122 Safari/537.36"}
+    headers = {
+        "content-type": "application/json", 
+        "origin": "https://leetcode-cn.com", 
+        "referer": "https://leetcode-cn.com/progress/", 
+        "user-agent": ua
+    }
 
     r = session.post(url, data=payload, headers=headers, verify=False)
     response_data = json.loads(r.text)
 
     return response_data
-
 
 
 # 获取所有通过的题目列表
@@ -81,7 +93,12 @@ def get_accepted_problems(session):
             "query": "query userProfileQuestions($status: StatusFilterEnum!, $skip: Int!, $first: Int!, $sortField: SortFieldEnum!, $sortOrder: SortingOrderEnum!, $keyword: String, $difficulty: [DifficultyEnum!]) {\n  userProfileQuestions(status: $status, skip: $skip, first: $first, sortField: $sortField, sortOrder: $sortOrder, keyword: $keyword, difficulty: $difficulty) {\n    totalNum\n    questions {\n      translatedTitle\n      frontendId\n      titleSlug\n      title\n      difficulty\n      lastSubmittedAt\n      numSubmitted\n      lastSubmissionSrc {\n        sourceType\n        ... on SubmissionSrcLeetbookNode {\n          slug\n          title\n          pageId\n          __typename\n        }\n        __typename\n      }\n      __typename\n    }\n    __typename\n  }\n}\n"
     })
 
-    headers = {"content-type": "application/json", "origin": "https://leetcode-cn.com", "referer": "https://leetcode-cn.com/progress/", "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.122 Safari/537.36"}
+    headers = {
+        "content-type": "application/json", 
+        "origin": "https://leetcode-cn.com", 
+        "referer": "https://leetcode-cn.com/progress/", 
+        "user-agent": ua
+    }
 
     r = session.post(url, data=payload, headers=headers, verify=False)
     response_data = json.loads(r.text)
@@ -89,11 +106,8 @@ def get_accepted_problems(session):
     return response_data
 
 
-
 # 生成Markdown文本
 def generate_markdown_text(response_data, session):
-
-
     # 相关介绍
     response_data = response_data['data']['userProfileQuestions']['questions']
     markdown_text = "## 项目介绍\n"
@@ -131,18 +145,18 @@ def generate_markdown_text(response_data, session):
         print('{}/{}'.format(index + 1, len(response_data)))
 
         # 获取一些必要的信息
-        lastSubmittedAt = time.strftime("%Y-%m-%d %H:%M", time.localtime(sub_data['lastSubmittedAt']))
-        translatedTitle = "#{} {}".format(sub_data['frontendId'], sub_data['translatedTitle'])
-        frontendId = sub_data['frontendId']
+        last_submitted_at = time.strftime("%Y-%m-%d %H:%M", time.localtime(sub_data['lastSubmittedAt']))
+        translated_title = "#{} {}".format(sub_data['frontendId'], sub_data['translatedTitle'])
+        frontend_id = sub_data['frontendId']
         difficulty = sub_data['difficulty']
-        titleSlug = sub_data['titleSlug']
-        numSubmitted = sub_data['numSubmitted']
-        numSubmitted = str(numSubmitted)
+        title_slug = sub_data['titleSlug']
+        num_submitted = sub_data['numSubmitted']
+        num_submitted = str(num_submitted)
         url = "https://leetcode-cn.com/problems/{}".format(sub_data['titleSlug'])
 
         # 获取重刷次数
         # 规则定义如下：提交通过的时间 与 之前提交通过的时间 不为同一天 即认为是重新刷了一遍
-        submission_dict = get_submission_list(titleSlug, session)
+        submission_dict = get_submission_list(title_slug, session)
         submission_list = submission_dict['data']['submissionList']['submissions']
         submission_accepted_dict = {}
 
@@ -163,8 +177,7 @@ def generate_markdown_text(response_data, session):
             count = str(count)
 
         # 更新Markdown文本
-        markdown_text += "| " + lastSubmittedAt + " | " + "[" + translatedTitle + "]" + "(" + url + ")" + " | " + difficulty + " | " + numSubmitted + " | " + count + " |" + "\n"
-
+        markdown_text += "| " + last_submitted_at + " | " + "[" + translated_title + "]" + "(" + url + ")" + " | " + difficulty + " | " + num_submitted + " | " + count + " |" + "\n"
 
     return markdown_text
 
