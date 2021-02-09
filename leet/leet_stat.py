@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 Date: 2021-02-08 20:45:34
-LastEditTime: 2021-02-09 14:59:26
+LastEditTime: 2021-02-09 20:34:42
 """
 import os
 import json
@@ -130,14 +130,14 @@ def generate_markdown_text(response_data, session):
     markdown_text += "    - 修改[leet_stat.yml](.github/workflows/leet_stat.yml)文件的`git config --global user.email`, 将`email`更改为你的GitHub邮箱地址\n"
     markdown_text += "    - 修改[leet_stat.yml](.github/workflows/leet_stat.yml)文件的`git config --global user.name`, 将`name`更改为你的GitHub用户名\n"
     markdown_text += "3. 默认配置为12小时更新一次，可根据需求修改[action.yml](.github/workflows/leet_stat.yml)文件的`on.schedule.cron`\n"
-    markdown_text +=  "## 补充说明\n"
+    markdown_text += "## 补充说明\n"
     markdown_text += "如有其他需求, 欢迎提交PR。\n"
     markdown_text += "\n\n"
     markdown_text += "> 重刷次数的计算规则为: 累计所有提交通过且互为不同一天的记录次数\n"
     markdown_text += "\n"
     markdown_text += "> Updated:{}\n".format(datetime.datetime.now().strftime('%Y-%m-%d'))
     markdown_text += "\n"
-    markdown_text += "| 最近提交时间 | 题目 | 题目难度 | 提交次数| 重刷次数 |\n| ---- | ---- | ---- | ---- | ---- |\n"
+    markdown_text += "| 最近提交时间 | 题目 | 题目难度 | 提交次数 | 通过次数 | 重刷次数 | 通过率 | 最佳实践 |\n| ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |\n"
 
     for index, sub_data in enumerate(response_data):
 
@@ -159,15 +159,21 @@ def generate_markdown_text(response_data, session):
         submission_dict = get_submission_list(title_slug, session)
         submission_list = submission_dict['data']['submissionList']['submissions']
         submission_accepted_dict = {}
-
+        accepted_ct = 0
+        best_url = None
+        run_time = 9999999
         for submission in submission_list:
             status = submission['statusDisplay']
             if (status == 'Accepted'):
+                accepted_ct += 1
                 submission_time = time.strftime("%Y-%m-%d", time.localtime(int(submission['timestamp'])))
                 if submission_time in submission_accepted_dict.keys():
                     submission_accepted_dict[submission_time] += 1
                 else:
                     submission_accepted_dict[submission_time] = 1
+                runtime = submission['runtime']
+                if int(runtime.replace(' ms', '')) < run_time:
+                    best_url = (submission_time, submission['url'])
 
         # 重刷次数
         count = len(submission_accepted_dict)
@@ -176,8 +182,14 @@ def generate_markdown_text(response_data, session):
         else:
             count = str(count)
 
+        # 通过率
+        accept_rate = "{}%".format(round(accepted_ct * 100.0 / int(num_submitted), 4))
+
+        # 最佳实践
+        best_url = "[{}](https://leetcode-cn.com{})".format(best_url[0], best_url[1]) if best_url else '加油努力'
+
         # 更新Markdown文本
-        markdown_text += "| " + last_submitted_at + " | " + "[" + translated_title + "]" + "(" + url + ")" + " | " + difficulty + " | " + num_submitted + " | " + count + " |" + "\n"
+        markdown_text += "| " + last_submitted_at + " | " + "[" + translated_title + "]" + "(" + url + ")" + " | " + difficulty + " | " + num_submitted + " | " + str(accepted_ct) + " | " + count + " | " + accept_rate + " | " + best_url + " |" + "\n"
 
     return markdown_text
 
