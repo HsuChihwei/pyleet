@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 Date: 2021-02-08 20:45:34
-LastEditTime: 2021-02-09 20:41:54
+LastEditTime: 2021-02-09 21:10:16
 """
 import os
 import json
@@ -172,7 +172,9 @@ def generate_markdown_text(response_data, session):
                 else:
                     submission_accepted_dict[submission_time] = 1
                 runtime = submission['runtime']
-                if int(runtime.replace(' ms', '')) < run_time:
+                tmp_time = int(runtime.replace(' ms', ''))
+                if tmp_time < run_time:
+                    run_time = tmp_time
                     best_url = (submission_time, submission['url'])
 
         # 重刷次数
