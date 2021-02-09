@@ -9,15 +9,15 @@
 ### 使用教程
 1. Fork本仓库
 2. 配置GitHub Actions所需的参数
-    - 点击仓库下的Settings->Secrets->New repository secret, 分别添加以下secret
-        - Name:LEETCODE_EMAIL  Value:你的LeetCode账号
-        - Name:LEETCODE_PASSWORD  Value:你的LeetCode密码
+    - 点击仓库下的`Settings->Secrets->New repository secret`, 分别添加以下secret
+        - Name:`LEETCODE_EMAIL`  Value:你的LeetCode账号
+        - Name:`LEETCODE_PASSWORD`  Value:你的LeetCode密码
     - 点击[tokens](https://github.com/settings/tokens)->Generate new token
         - Note:GITHUB_TOKEN
         - Select scopes:建议全部勾选
-    - 修改[leet_stat.yml](.github/workflows/leet_stat.yml)文件的第`44行`, 将`email`更改为你的GitHub邮箱地址
-    - 修改[leet_stat.yml](.github/workflows/leet_stat.yml)文件的第`45行`, 将`name`更改为你的GitHub用户名
-3. 默认配置为12小时更新一次，可根据需求修改[action.yml](.github/workflows/leet_stat.yml)文件的第`6行`
+    - 修改[leet_stat.yml](.github/workflows/leet_stat.yml)文件的`git config --global user.email`, 将`email`更改为你的GitHub邮箱地址
+    - 修改[leet_stat.yml](.github/workflows/leet_stat.yml)文件的`git config --global user.name`, 将`name`更改为你的GitHub用户名
+3. 默认配置为12小时更新一次，可根据需求修改[action.yml](.github/workflows/leet_stat.yml)文件的`on.schedule.cron`
 ## 补充说明
 如有其他需求, 欢迎提交PR。
 
