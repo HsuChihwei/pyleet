@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 Date: 2021-02-09 19:44:29
-LastEditTime: 2021-02-09 19:47:17
+LastEditTime: 2021-02-09 19:54:22
 """
 #
 # @lc app=leetcode.cn id=7 lang=python3
@@ -60,6 +60,9 @@ class Solution:
             tmp = i + tmp
         if tmp[0] == '0':
             tmp = tmp[1:]
-        return int(res + tmp)
+        res = int(res + tmp)
+        if (res > 2**31 - 1) or (res<-2**31):
+            return 0
+        return res
 # @lc code=end
 
