@@ -120,7 +120,8 @@ def generate_markdown_text(response_data, session):
     markdown_text += "如有其他需求, 欢迎提交PR。\n"
     markdown_text += "\n\n"
     markdown_text += "> 重刷次数的计算规则为: 累计所有提交通过且互为不同一天的记录次数\n"
-    markdown_text += "> Updated:{}\n".format(datetime.datetime.now().strftime('%Y-%m-%d %H:00:00'))
+    markdown_text += "\n"
+    markdown_text += "> Updated:{}\n".format(datetime.datetime.now().strftime('%Y-%m-%d'))
     markdown_text += "\n"
     markdown_text += "| 最近提交时间 | 题目 | 题目难度 | 提交次数| 重刷次数 |\n| ---- | ---- | ---- | ---- | ---- |\n"
 
