@@ -24,9 +24,9 @@
 
 > 重刷次数的计算规则为: 累计所有提交通过且互为不同一天的记录次数
 
-> Updated:2021-02-09
+> Updated:2021-02-18
 
 | 最近提交时间 | 题目 | 题目难度 | 提交次数 | 通过次数 | 重刷次数 | 通过率 | 最佳实践 |
 | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
-| 2021-02-09 13:05 | [#7 整数反转](https://leetcode-cn.com/problems/reverse-integer) | EASY | 10 | 8 | 1 | 80.0% | [2021-02-09](https://leetcode-cn.com/submissions/detail/144982057/) |
+| 2021-02-09 13:05 | [#7 整数反转](https://leetcode-cn.com/problems/reverse-integer) | EASY | 10 | 8 | 1 | 80.0% | [2021-02-09](https://leetcode-cn.com/submissions/detail/144995327/) |
 | 2021-02-08 12:45 | [#1 两数之和](https://leetcode-cn.com/problems/two-sum) | EASY | 12 | 8 | 1 | 66.67% | [2021-02-08](https://leetcode-cn.com/submissions/detail/144761415/) |
