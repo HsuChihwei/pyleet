@@ -28,6 +28,7 @@
 
 | 最近提交时间 | 题目 | 题目难度 | 提交次数 | 通过次数 | 重刷次数 | 通过率 | 最佳实践 |
 | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
+| 2021-02-18 08:40 | [#14 最长公共前缀](https://leetcode-cn.com/problems/longest-common-prefix) | EASY | 9 | 9 | 1 | 100.0% | [2021-02-18](https://leetcode-cn.com/submissions/detail/146516727/) |
 | 2021-02-18 07:48 | [#13 罗马数字转整数](https://leetcode-cn.com/problems/roman-to-integer) | EASY | 9 | 9 | 1 | 100.0% | [2021-02-18](https://leetcode-cn.com/submissions/detail/146498752/) |
 | 2021-02-18 07:02 | [#9 回文数](https://leetcode-cn.com/problems/palindrome-number) | EASY | 5 | 5 | 1 | 100.0% | [2021-02-18](https://leetcode-cn.com/submissions/detail/146483127/) |
 | 2021-02-09 13:05 | [#7 整数反转](https://leetcode-cn.com/problems/reverse-integer) | EASY | 10 | 8 | 1 | 80.0% | [2021-02-09](https://leetcode-cn.com/submissions/detail/144995327/) |
