@@ -47,8 +47,8 @@ jobs:
 
     - name: commit
       run: |
-        git config --global user.email home@xuzhiwei.site
-        git config --global user.name xzw
+        git config --global user.email qwxuzhiwei@163.com 
+        git config --global user.name HsuChihwei
         git add .
         git commit -m "update" -a
 
