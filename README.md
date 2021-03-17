@@ -24,11 +24,11 @@
 
 > 重刷次数的计算规则为: 累计所有提交通过且互为不同一天的记录次数
 
-> Updated:2021-03-16
+> Updated:2021-03-17
 
 | 最近提交时间 | 题目 | 题目难度 | 提交次数 | 通过次数 | 重刷次数 | 通过率 | 最佳实践 |
 | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
-| 2021-02-19 09:59 | [#26 删除排序数组中的重复项](https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array) | EASY | 8 | 8 | 1 | 100.0% | [2021-02-19](https://leetcode-cn.com/submissions/detail/146823997/) |
+| 2021-02-19 09:59 | [#26 删除有序数组中的重复项](https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array) | EASY | 8 | 8 | 1 | 100.0% | [2021-02-19](https://leetcode-cn.com/submissions/detail/146823997/) |
 | 2021-02-18 13:08 | [#21 合并两个有序链表](https://leetcode-cn.com/problems/merge-two-sorted-lists) | EASY | 4 | 4 | 1 | 100.0% | [2021-02-18](https://leetcode-cn.com/submissions/detail/146588166/) |
 | 2021-02-18 09:31 | [#20 有效的括号](https://leetcode-cn.com/problems/valid-parentheses) | EASY | 11 | 11 | 1 | 100.0% | [2021-02-18](https://leetcode-cn.com/submissions/detail/146534074/) |
 | 2021-02-18 08:40 | [#14 最长公共前缀](https://leetcode-cn.com/problems/longest-common-prefix) | EASY | 9 | 9 | 1 | 100.0% | [2021-02-18](https://leetcode-cn.com/submissions/detail/146516727/) |
